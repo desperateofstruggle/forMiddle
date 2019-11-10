@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project name="helloworld_Ant" default="Junit_test_helloworld" basedir="">
+<target name="compile">
+       <!--srcdir指定了java源文件所在的路径，destdir指定的是编译后的class文件存放的路径-->
+    <javac srcdir="./" destdir="./" /> 
+</target>
+<target name="Junit_test_helloworld" depends="compile">
+       <junit>
+        <classpath>
+               <!-- //配置classpath之后可以不用再链接这些jar包
+            <fileset dir="./">
+                <include name="junit-3.8.1.jar" />
+            </fileset>
+            -->
+            <pathelement path="./" />
+        </classpath>
+        <batchtest> 
+            <fileset dir="./">
+                <include name="HelloWorldTest.class" />
+            </fileset>
+        </batchtest>
+    </junit>
+</target>
+</project>   
+<!--depends表示当前target必须在depends所代码的target执行完之后执行-->
